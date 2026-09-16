@@ -71,14 +71,14 @@ if uploaded_file is not None:
     def on_llm_new_token(self, token: str, **kwargs) -> None:
         self.text+=token
         self.container.markdown(self.text)
-#user input
+  #user input
   st.header('PDF에게 질문해보세요!!!')
   question = st.text_input('질문을 입력하세요')
 
   if st.button('질문하기'):
      with st.spinner('Wait for it....'):
         #검색 객체 생성
-        llm = init_chat_model("gpt-4o-mini",temperature=0, api_key=api_key)
+        llm = init_chat_model("gpt-5.5", api_key=api_key)
 
         # Chroma 백터 저장소에 대한 Retriever 인스턴스 생성
         retriever_from_llm = MultiQueryRetriever.from_llm(
@@ -94,7 +94,8 @@ if uploaded_file is not None:
         chat_box = st.empty()
         stream_handler = StreamHandler(chat_box)
             
-        generate_llm = init_chat_model(model="gpt-4o-mini",temperature=0, openai_api_key=api_key, streaming=True, callbacks=[stream_handler])
+        generate_llm = init_chat_model(model="gpt-5.5", openai_api_key=api_key, streaming=True, callbacks=[stream_handler])
+        # generate_llm = init_chat_model(model="gpt-5.5", openai_api_key=api_key)
 
         #검색결과 format
         def format_docs(docs):
