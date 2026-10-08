@@ -82,7 +82,7 @@ if uploaded_file is not None:
 
         # Chroma 백터 저장소에 대한 Retriever 인스턴스 생성
         retriever_from_llm = MultiQueryRetriever.from_llm(
-        retriever=db.as_retriever(), llm=llm
+          retriever=db.as_retriever(), llm=llm
         )
 
         #Generate 
